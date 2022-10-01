@@ -26,9 +26,8 @@ class _MyAppState extends State<MyApp> {
   String _wallpaperUrlHome = 'Unknown';
   String _wallpaperUrlLock = 'Unknown';
   String _wallpaperUrlBoth = 'Unknown';
-  String _liveWallpaper = 'Unknown';
   String url = 'https://images.unsplash.com/photo-1635593701810-3156162e184f';
-  String liveUrl = 'https://github.com/codenameakshay/sample-data/raw/main/video3.mp4';
+  // String liveUrl = 'https://github.com/codenameakshay/sample-data/raw/main/video3.mp4';
 
   late bool goToHome;
 
@@ -193,7 +192,8 @@ class _MyAppState extends State<MyApp> {
       )
           ? 'Wallpaper set'
           : 'Failed to get wallpaper.';
-    } on PlatformException {
+    } on PlatformException catch(e){
+      print(e);
       result = 'Failed to get wallpaper.';
     }
 
@@ -295,33 +295,33 @@ class _MyAppState extends State<MyApp> {
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> setLiveWallpaper() async {
-    setState(() {
-      _liveWallpaper = 'Loading';
-    });
-    String result;
-    var file = await DefaultCacheManager().getSingleFile(liveUrl);
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      result = await AsyncWallpaper.setLiveWallpaper(
-        filePath: file.path,
-        goToHome: goToHome,
-      )
-          ? 'Wallpaper set'
-          : 'Failed to get wallpaper.';
-    } on PlatformException {
-      result = 'Failed to get wallpaper.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _liveWallpaper = result;
-    });
-  }
+  // Future<void> setLiveWallpaper() async {
+  //   setState(() {
+  //     _liveWallpaper = 'Loading';
+  //   });
+  //   String result;
+  //   var file = await DefaultCacheManager().getSingleFile(liveUrl);
+  //   // Platform messages may fail, so we use a try/catch PlatformException.
+  //   try {
+  //     result = await AsyncWallpaper.setLiveWallpaper(
+  //       filePath: file.path,
+  //       goToHome: goToHome,
+  //     )
+  //         ? 'Wallpaper set'
+  //         : 'Failed to get wallpaper.';
+  //   } on PlatformException {
+  //     result = 'Failed to get wallpaper.';
+  //   }
+  //
+  //   // If the widget was removed from the tree while the asynchronous platform
+  //   // message was in flight, we want to discard the reply rather than calling
+  //   // setState to update our non-existent appearance.
+  //   if (!mounted) return;
+  //
+  //   setState(() {
+  //     _liveWallpaper = result;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -332,7 +332,7 @@ class _MyAppState extends State<MyApp> {
       body: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
-          child: Column(
+          child: ListView(
             children: [
               Center(
                 child: Text('Running on: $_platformVersion\n'),
@@ -417,14 +417,14 @@ class _MyAppState extends State<MyApp> {
               Center(
                 child: Text('Wallpaper status: $_wallpaperUrlBoth\n'),
               ),
-              ElevatedButton(
-                onPressed: setLiveWallpaper,
-                child:
-                    _liveWallpaper == 'Loading' ? const CircularProgressIndicator() : const Text('Set live wallpaper'),
-              ),
-              Center(
-                child: Text('Wallpaper status: $_liveWallpaper\n'),
-              ),
+              // ElevatedButton(
+              //   onPressed: setLiveWallpaper,
+              //   child:
+              //       _liveWallpaper == 'Loading' ? const CircularProgressIndicator() : const Text('Set live wallpaper'),
+              // ),
+              // Center(
+              //   child: Text('Wallpaper status: $_liveWallpaper\n'),
+              // ),
             ],
           ),
         ),

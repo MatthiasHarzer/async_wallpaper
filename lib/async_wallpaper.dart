@@ -42,7 +42,7 @@ class AsyncWallpaper {
   static const String _SET_WALLPAPER_FILE = 'set_wallpaper_file';
 
   /// Name for 'set_video_wallpaper' native function\
-  static const String _SET_VIDEO_WALLPAPER = 'set_video_wallpaper';
+  // static const String _SET_VIDEO_WALLPAPER = 'set_video_wallpaper';
 
   /// Function to check working/validity of method channels
   static Future<String?> get platformVersion async {
@@ -192,25 +192,25 @@ class AsyncWallpaper {
   /// Function takes input live file path, and shows live wallpaper activity
   /// You can also set the bool [goToHome] to instruct the app to take the user to the home screen
   /// to show the set wallpaper. If wallpaper set fails, user won't be taken to home screen.
-  static Future<bool> setLiveWallpaper({
-    required String filePath,
-    bool goToHome = false,
-  }) async {
-    /// Variable to store operation result
-    bool result = false;
-
-    // The paramters for the method call
-    final options = {
-      'url': filePath,
-      'goToHome': goToHome,
-    };
-
-    result = await _channel.invokeMethod(
-      _SET_VIDEO_WALLPAPER,
-      options,
-    );
-
-    /// Function returns the bool result, use for debugging or showing toast message
-    return result;
-  }
+  // static Future<bool> setLiveWallpaper({
+  //   required String filePath,
+  //   bool goToHome = false,
+  // }) async {
+  //   /// Variable to store operation result
+  //   bool result = false;
+  //
+  //   // The paramters for the method call
+  //   final options = {
+  //     'url': filePath,
+  //     'goToHome': goToHome,
+  //   };
+  //
+  //   result = await _channel.invokeMethod(
+  //     _SET_VIDEO_WALLPAPER,
+  //     options,
+  //   );
+  //
+  //   /// Function returns the bool result, use for debugging or showing toast message
+  //   return result;
+  // }
 }
