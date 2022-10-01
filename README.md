@@ -13,7 +13,7 @@ and the Flutter guide for
 
 <h1 align="center">Async Wallpaper</h1>
 
-<p align="center">A flutter package which contains a collection of some functions to set wallpaper on your Android device asynchronously. With this plugin you can also set video live wallpapers (.mp4) natively.</p><br>
+<p align="center">A flutter package which contains a collection of some functions to set wallpaper on your Android device asynchronously. With this plugin you can't set video live wallpapers (.mp4).</p><br>
 
 <p align="center">
   <a href="https://flutter.dev">
