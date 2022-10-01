@@ -13,7 +13,7 @@ and the Flutter guide for
 
 <h1 align="center">Async Wallpaper</h1>
 
-<p align="center">A flutter package which contains a collection of some functions to set wallpaper on your Android device asynchronously. With this plugin you can also set video live wallpapers (.mp4) natively.</p><br>
+<p align="center">A flutter package which contains a collection of some functions to set wallpaper on your Android device asynchronously. With this plugin you can't set video live wallpapers (.mp4).</p><br>
 
 <p align="center">
   <a href="https://flutter.dev">
@@ -233,27 +233,6 @@ try {
     result = await AsyncWallpaper.setWallpaper(
     url: url,
     wallpaperLocation: AsyncWallpaper.BOTH_SCREENS,
-    goToHome: goToHome,
-    )
-        ? 'Wallpaper set'
-        : 'Failed to get wallpaper.';
-} on PlatformException {
-    result = 'Failed to get wallpaper.';
-}
-
-```
-
-## setLiveWallpaper
-
-Setting live wallpaper requires `.mp4` file. Also currently local files are only supported, so download it before calling this function. The method call redirect to native Android live wallpaper setting intent, so no locations are currently supported.
-
-```dart
-String result;
-var file = await DefaultCacheManager().getSingleFile(liveUrl);
-// Platform messages may fail, so we use a try/catch PlatformException.
-try {
-    result = await AsyncWallpaper.setLiveWallpaper(
-    filePath: file.path,
     goToHome: goToHome,
     )
         ? 'Wallpaper set'
